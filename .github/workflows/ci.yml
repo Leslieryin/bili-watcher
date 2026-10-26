@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    name: Node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['20', '22']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: 语法检查（全部 JS 与 MJS）
+        run: |
+          fail=0
+          for f in $(find src extension test -type f \( -name '*.js' -o -name '*.mjs' \)); do
+            node --check "$f" || { echo "语法错误: $f"; fail=1; }
+          done
+          exit $fail
+
+      - name: 校验扩展清单
+        run: |
+          python3 - <<'PY'
+          import json, sys
+          m = json.load(open('extension/manifest.json', encoding='utf-8'))
+          assert m['manifest_version'] == 3, '必须使用 Manifest V3'
+          assert 'background' in m, '缺少 background service worker'
+          print('manifest OK  version=%s' % m.get('version'))
+          PY
+
+      - name: MD5 测试（RFC 1321 测试向量）
+        run: node test/md5.test.js
+
+      # wbi.test.js 与 subtitle.test.js 会真实请求 api.bilibili.com，
+      # 依赖登录态与网络环境，不适合在 CI 中运行，保留为本地验证。

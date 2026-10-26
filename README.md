@@ -2,6 +2,7 @@
 
 B 站随机观影 + 视频内容总结工具。**只读公开数据,不使用账号密码登录,不自动发评论。**
 
+![CI](https://github.com/Leslieryin/bili-watcher/actions/workflows/ci.yml/badge.svg)
 ![license](https://img.shields.io/badge/license-MIT-blue)
 ![node](https://img.shields.io/badge/node-%3E%3D20-339933)
 ![manifest](https://img.shields.io/badge/Chrome-MV3-4285F4)
