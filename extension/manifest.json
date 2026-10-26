@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "B站随机观影总结器",
+  "version": "1.0.0",
+  "description": "随机浏览 B 站视频并生成内容总结。复用浏览器登录态抓取字幕,不自建登录,不存储账号密码。",
+  "permissions": ["storage", "alarms", "scripting", "activeTab", "tabs"],
+  "host_permissions": [
+    "https://api.bilibili.com/*",
+    "https://www.bilibili.com/*",
+    "https://*.hdslb.com/*"
+  ],
+  "action": {
+    "default_title": "B站随机观影总结器",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.bilibili.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

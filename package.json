@@ -1,0 +1,28 @@
+{
+  "name": "bili-watcher",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "B站随机观看与视频内容总结工具(只读公开数据)",
+  "license": "MIT",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leslieryin/bili-watcher.git"
+  },
+  "keywords": [
+    "bilibili",
+    "wbi-signature",
+    "chrome-extension",
+    "mv3",
+    "content-summary"
+  ],
+  "scripts": {
+    "once": "node src/index.js once --count 3",
+    "daemon": "node src/index.js daemon --interval 600 --batch 2",
+    "status": "node src/index.js status"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
