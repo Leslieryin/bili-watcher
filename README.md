@@ -1,5 +1,7 @@
 # bili-watcher
 
+> **EN** — A Bilibili random-watch and content-summary tool: a read-only Node engine plus a Chrome MV3 extension, with the WBI signature implemented from scratch. It never posts comments.
+
 B 站随机观影 + 视频内容总结工具。**只读公开数据,不使用账号密码登录,不自动发评论。**
 
 ![CI](https://github.com/Leslieryin/bili-watcher/actions/workflows/ci.yml/badge.svg)
