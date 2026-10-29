@@ -58,6 +58,10 @@ node src/index.js daemon --interval 600 --batch 2   # 常驻,每 10 分钟 2 条
 node src/index.js status              # 查看进度与最近摘要
 ```
 
+![node src/index.js once --count 2 与 status 的真实输出](docs/demo.gif)
+
+*只读公开接口：一次抓 2 条并生成总结，再用 status 查看进度与最近摘要；未登录时不取字幕，只基于标题、标签与统计。*
+
 可选环境变量:
 
 ```bash
